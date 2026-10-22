@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComercialAndina.ComercialAndina.Servicios;
+using System.IO;
 
 namespace ComercialAndina
 {
@@ -19,37 +20,15 @@ namespace ComercialAndina
         public Form1()
         {
             InitializeComponent();
+            // El código de venta lo genera automáticamente el gestor.
+            txtCodigoVenta.ReadOnly = true;
+            txtCodigoVenta.Clear();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRegistrarVenta_Click(object sender, EventArgs e)
         {
             try
             {
+                // RegistrarVenta genera automáticamente el código de la venta.
                 var venta = gestor.RegistrarVenta(
                     txtClienteVenta.Text,
                     txtProductos.Text,
@@ -58,19 +37,30 @@ namespace ComercialAndina
                     dtpFechaVenta.Value
                 );
 
-                lstVentas.Items.Clear();
+                // Mostrar el código automático generado.
+                txtCodigoVenta.Text = venta.CodigoOperacion;
 
-                foreach (var v in gestor.Ventas.ObtenerTodas())
-                {
-                    lstVentas.Items.Add(v.ToString());
-                }
+                // Actualizar la lista visual de ventas.
+                ActualizarListaVentas();
 
                 MessageBox.Show(
-                    $"Venta registrada correctamente.\nTotal: S/ {venta.Total:F2}",
+                    "Venta registrada correctamente.\n" +
+                    "Código: " + venta.CodigoOperacion + "\n" +
+                    "Total: S/ " + venta.Total.ToString("F2"),
                     "Registro exitoso",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
+
+                // Limpiar los campos para registrar otra venta.
+                txtCodigoVenta.Clear();
+                txtClienteVenta.Clear();
+                txtProductos.Clear();
+                nudCantidad.Value = nudCantidad.Minimum;
+                nudPrecio.Value = nudPrecio.Minimum;
+
+                // Dejar el foco en el campo del cliente.
+                txtClienteVenta.Focus();
             }
             catch (Exception ex)
             {
@@ -83,10 +73,23 @@ namespace ComercialAndina
             }
         }
 
+        // Actualiza la lista visual con todas las ventas registradas.
+        private void ActualizarListaVentas()
+        {
+            lstVentas.Items.Clear();
+
+            foreach (var venta in gestor.Ventas.ObtenerTodas())
+            {
+                lstVentas.Items.Add(venta.ToString());
+            }
+        }
+
+
         private void nudPrecio_ValueChanged(object sender, EventArgs e)
         {
 
         }
+
 
         private void btnConsultarVenta_Click(object sender, EventArgs e)
         {
@@ -98,12 +101,12 @@ namespace ComercialAndina
                     "Ingresa el código de la operación.",
                     "Campo requerido",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                    MessageBoxIcon.Warning);
                 return;
             }
 
-            var venta = gestor.IndicePorCodigo.Buscar(codigo);
+            // Búsqueda secuencial en la lista enlazada.
+            var venta = gestor.Ventas.Buscar(codigo);
 
             if (venta != null)
             {
@@ -112,16 +115,19 @@ namespace ComercialAndina
                     "\nCliente: " + venta.IdentificadorCliente +
                     "\nProducto(s): " + venta.Productos +
                     "\nCantidad: " + venta.Cantidad +
-                    "\nPrecio unitario: S/ " + venta.PrecioUnitario.ToString("F2") +
+                    "\nPrecio unitario: S/ " +
+                    venta.PrecioUnitario.ToString("F2") +
                     "\nTotal: S/ " + venta.Total.ToString("F2") +
                     "\nFecha: " + venta.Fecha.ToShortDateString() +
                     "\nEstado: " + venta.Estado;
             }
             else
             {
-                lblResultadoConsulta.Text = "No se encontró la operación " + codigo;
+                lblResultadoConsulta.Text =
+                    "No se encontró la operación " + codigo;
             }
         }
+
 
         private void btnRegistrarSolicitud_Click(object sender, EventArgs e)
         {
@@ -255,6 +261,8 @@ namespace ComercialAndina
                     txtMotivoReversa.Text.Trim(),
                     txtSupervisor.Text.Trim()
                 );
+                // Actualizar las ventas para reflejar el estado Reversada.
+                ActualizarListaVentas();
 
                 lstReversas.Items.Clear();
 
@@ -314,5 +322,90 @@ namespace ComercialAndina
                 MessageBoxIcon.Information
             );
         }
+
+
+
+        private void btnRegistrarReporte_Click(object sender, EventArgs e)
+        {
+            var ventas = gestor.Ventas.ObtenerTodas();
+            var solicitudes = gestor.Solicitudes.ObtenerPendientes();
+            var reversas = gestor.Reversas.ObtenerHistorial();
+
+            if (ventas.Count == 0)
+            {
+                MessageBox.Show(
+                    "Todavía no hay ventas registradas.",
+                    "Reporte comercial",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+                return;
+            }
+
+            StringBuilder reporte = new StringBuilder();
+
+            reporte.AppendLine("========== REPORTE COMERCIAL ==========");
+            reporte.AppendLine("Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            reporte.AppendLine("Total de ventas: " + ventas.Count);
+            reporte.AppendLine();
+
+            // Agrupar las ventas por cliente.
+            var ventasPorCliente = ventas
+                .GroupBy(v => v.IdentificadorCliente)
+                .OrderBy(g => g.Key);
+
+            foreach (var grupo in ventasPorCliente)
+            {
+                reporte.AppendLine("CLIENTE: " + grupo.Key);
+                reporte.AppendLine("--------------------------------------");
+
+                foreach (var venta in grupo)
+                {
+                    reporte.AppendLine("Código: " + venta.CodigoOperacion);
+                    reporte.AppendLine("Producto(s): " + venta.Productos);
+                    reporte.AppendLine("Cantidad: " + venta.Cantidad);
+                    reporte.AppendLine(
+                        "Precio unitario: S/ " +
+                        venta.PrecioUnitario.ToString("F2")
+                    );
+                    reporte.AppendLine(
+                        "Total: S/ " + venta.Total.ToString("F2")
+                    );
+                    reporte.AppendLine(
+                        "Fecha: " + venta.Fecha.ToString("dd/MM/yyyy")
+                    );
+                    reporte.AppendLine("Estado: " + venta.Estado);
+                    reporte.AppendLine();
+                }
+
+                reporte.AppendLine();
+            }
+
+            reporte.AppendLine("========== RESUMEN ==========");
+            reporte.AppendLine("Solicitudes pendientes: " + solicitudes.Count);
+            reporte.AppendLine("Reversas registradas: " + reversas.Count);
+
+            // Mostrar el reporte en una ventana, sin generar archivos.
+            Form ventanaReporte = new Form();
+            ventanaReporte.Text = "Reporte de ventas por cliente";
+            ventanaReporte.Width = 650;
+            ventanaReporte.Height = 600;
+            ventanaReporte.StartPosition = FormStartPosition.CenterParent;
+            ventanaReporte.MinimizeBox = false;
+
+            TextBox contenido = new TextBox();
+            contenido.Multiline = true;
+            contenido.ReadOnly = true;
+            contenido.ScrollBars = ScrollBars.Both;
+            contenido.WordWrap = false;
+            contenido.Dock = DockStyle.Fill;
+            contenido.Font = new System.Drawing.Font("Consolas", 10);
+            contenido.Text = reporte.ToString();
+
+            ventanaReporte.Controls.Add(contenido);
+            ventanaReporte.ShowDialog(this);
+        }
+
+
     }
 }

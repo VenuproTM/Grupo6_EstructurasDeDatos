@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabPrincipal = new System.Windows.Forms.TabControl();
             this.tabVentas = new System.Windows.Forms.TabPage();
+            this.btnRegistrarReporte = new System.Windows.Forms.Button();
             this.nudPrecio = new System.Windows.Forms.NumericUpDown();
             this.lstVentas = new System.Windows.Forms.ListBox();
             this.dtpFechaVenta = new System.Windows.Forms.DateTimePicker();
@@ -48,34 +49,34 @@
             this.lblCodigoVenta = new System.Windows.Forms.Label();
             this.lblTituloVentas = new System.Windows.Forms.Label();
             this.tabConsultas = new System.Windows.Forms.TabPage();
+            this.lblResultadoConsulta = new System.Windows.Forms.Label();
+            this.btnConsultarVenta = new System.Windows.Forms.Button();
+            this.txtCodigoConsulta = new System.Windows.Forms.TextBox();
+            this.lblCodigoConsulta = new System.Windows.Forms.Label();
             this.tabSolicitudes = new System.Windows.Forms.TabPage();
+            this.lstSolicitudes = new System.Windows.Forms.ListBox();
+            this.btnAtenderSolicitud = new System.Windows.Forms.Button();
+            this.btnRegistrarSolicitud = new System.Windows.Forms.Button();
+            this.txtDetalleSolicitud = new System.Windows.Forms.TextBox();
+            this.lblDetalleSolicitud = new System.Windows.Forms.Label();
+            this.cmbTipoSolicitud = new System.Windows.Forms.ComboBox();
+            this.lblTipoSolicitud = new System.Windows.Forms.Label();
+            this.txtClienteSolicitud = new System.Windows.Forms.TextBox();
+            this.lblClienteSolicitud = new System.Windows.Forms.Label();
+            this.txtCodigoSolicitud = new System.Windows.Forms.TextBox();
+            this.lblCodigoSolicitud = new System.Windows.Forms.Label();
             this.tabReversas = new System.Windows.Forms.TabPage();
+            this.lstReversas = new System.Windows.Forms.ListBox();
+            this.btnVerHistorialReversas = new System.Windows.Forms.Button();
+            this.btnAutorizarReversa = new System.Windows.Forms.Button();
+            this.txtSupervisor = new System.Windows.Forms.TextBox();
+            this.txtMotivoReversa = new System.Windows.Forms.TextBox();
+            this.lblSupervisor = new System.Windows.Forms.Label();
+            this.lblMotivoReversa = new System.Windows.Forms.Label();
+            this.txtCodigoReversa = new System.Windows.Forms.TextBox();
+            this.lblCodigoReversa = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.lblCodigoConsulta = new System.Windows.Forms.Label();
-            this.txtCodigoConsulta = new System.Windows.Forms.TextBox();
-            this.btnConsultarVenta = new System.Windows.Forms.Button();
-            this.lblResultadoConsulta = new System.Windows.Forms.Label();
-            this.lblCodigoSolicitud = new System.Windows.Forms.Label();
-            this.txtCodigoSolicitud = new System.Windows.Forms.TextBox();
-            this.lblClienteSolicitud = new System.Windows.Forms.Label();
-            this.txtClienteSolicitud = new System.Windows.Forms.TextBox();
-            this.lblTipoSolicitud = new System.Windows.Forms.Label();
-            this.cmbTipoSolicitud = new System.Windows.Forms.ComboBox();
-            this.lblDetalleSolicitud = new System.Windows.Forms.Label();
-            this.txtDetalleSolicitud = new System.Windows.Forms.TextBox();
-            this.btnRegistrarSolicitud = new System.Windows.Forms.Button();
-            this.btnAtenderSolicitud = new System.Windows.Forms.Button();
-            this.lstSolicitudes = new System.Windows.Forms.ListBox();
-            this.lblCodigoReversa = new System.Windows.Forms.Label();
-            this.txtCodigoReversa = new System.Windows.Forms.TextBox();
-            this.lblMotivoReversa = new System.Windows.Forms.Label();
-            this.lblSupervisor = new System.Windows.Forms.Label();
-            this.txtMotivoReversa = new System.Windows.Forms.TextBox();
-            this.txtSupervisor = new System.Windows.Forms.TextBox();
-            this.btnAutorizarReversa = new System.Windows.Forms.Button();
-            this.btnVerHistorialReversas = new System.Windows.Forms.Button();
-            this.lstReversas = new System.Windows.Forms.ListBox();
             this.tabPrincipal.SuspendLayout();
             this.tabVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).BeginInit();
@@ -101,6 +102,7 @@
             // 
             // tabVentas
             // 
+            this.tabVentas.Controls.Add(this.btnRegistrarReporte);
             this.tabVentas.Controls.Add(this.nudPrecio);
             this.tabVentas.Controls.Add(this.lstVentas);
             this.tabVentas.Controls.Add(this.dtpFechaVenta);
@@ -124,6 +126,17 @@
             this.tabVentas.TabIndex = 0;
             this.tabVentas.Text = "Registrar Ventas";
             this.tabVentas.UseVisualStyleBackColor = true;
+            // 
+            // btnRegistrarReporte
+            // 
+            this.btnRegistrarReporte.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnRegistrarReporte.Location = new System.Drawing.Point(540, 238);
+            this.btnRegistrarReporte.Name = "btnRegistrarReporte";
+            this.btnRegistrarReporte.Size = new System.Drawing.Size(75, 38);
+            this.btnRegistrarReporte.TabIndex = 20;
+            this.btnRegistrarReporte.Text = "Generar Reporte";
+            this.btnRegistrarReporte.UseVisualStyleBackColor = true;
+            this.btnRegistrarReporte.Click += new System.EventHandler(this.btnRegistrarReporte_Click);
             // 
             // nudPrecio
             // 
@@ -196,7 +209,6 @@
             this.txtProductos.Name = "txtProductos";
             this.txtProductos.Size = new System.Drawing.Size(200, 20);
             this.txtProductos.TabIndex = 9;
-            this.txtProductos.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lblFechaVenta
             // 
@@ -254,6 +266,7 @@
             // 
             this.txtCodigoVenta.Location = new System.Drawing.Point(211, 56);
             this.txtCodigoVenta.Name = "txtCodigoVenta";
+            this.txtCodigoVenta.ReadOnly = true;
             this.txtCodigoVenta.Size = new System.Drawing.Size(200, 20);
             this.txtCodigoVenta.TabIndex = 2;
             // 
@@ -288,7 +301,40 @@
             this.tabConsultas.TabIndex = 1;
             this.tabConsultas.Text = "Consultar Operación";
             this.tabConsultas.UseVisualStyleBackColor = true;
-            this.tabConsultas.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // lblResultadoConsulta
+            // 
+            this.lblResultadoConsulta.AutoSize = true;
+            this.lblResultadoConsulta.Location = new System.Drawing.Point(209, 66);
+            this.lblResultadoConsulta.Name = "lblResultadoConsulta";
+            this.lblResultadoConsulta.Size = new System.Drawing.Size(0, 13);
+            this.lblResultadoConsulta.TabIndex = 3;
+            // 
+            // btnConsultarVenta
+            // 
+            this.btnConsultarVenta.Location = new System.Drawing.Point(79, 133);
+            this.btnConsultarVenta.Name = "btnConsultarVenta";
+            this.btnConsultarVenta.Size = new System.Drawing.Size(75, 23);
+            this.btnConsultarVenta.TabIndex = 2;
+            this.btnConsultarVenta.Text = "Consultar";
+            this.btnConsultarVenta.UseVisualStyleBackColor = true;
+            this.btnConsultarVenta.Click += new System.EventHandler(this.btnConsultarVenta_Click);
+            // 
+            // txtCodigoConsulta
+            // 
+            this.txtCodigoConsulta.Location = new System.Drawing.Point(70, 93);
+            this.txtCodigoConsulta.Name = "txtCodigoConsulta";
+            this.txtCodigoConsulta.Size = new System.Drawing.Size(100, 20);
+            this.txtCodigoConsulta.TabIndex = 1;
+            // 
+            // lblCodigoConsulta
+            // 
+            this.lblCodigoConsulta.AutoSize = true;
+            this.lblCodigoConsulta.Location = new System.Drawing.Point(67, 66);
+            this.lblCodigoConsulta.Name = "lblCodigoConsulta";
+            this.lblCodigoConsulta.Size = new System.Drawing.Size(108, 13);
+            this.lblCodigoConsulta.TabIndex = 0;
+            this.lblCodigoConsulta.Text = "Código de operación:";
             // 
             // tabSolicitudes
             // 
@@ -310,6 +356,104 @@
             this.tabSolicitudes.Text = "Solicitudes";
             this.tabSolicitudes.UseVisualStyleBackColor = true;
             // 
+            // lstSolicitudes
+            // 
+            this.lstSolicitudes.FormattingEnabled = true;
+            this.lstSolicitudes.Location = new System.Drawing.Point(245, 57);
+            this.lstSolicitudes.Name = "lstSolicitudes";
+            this.lstSolicitudes.Size = new System.Drawing.Size(396, 147);
+            this.lstSolicitudes.TabIndex = 10;
+            // 
+            // btnAtenderSolicitud
+            // 
+            this.btnAtenderSolicitud.Location = new System.Drawing.Point(326, 225);
+            this.btnAtenderSolicitud.Name = "btnAtenderSolicitud";
+            this.btnAtenderSolicitud.Size = new System.Drawing.Size(75, 42);
+            this.btnAtenderSolicitud.TabIndex = 9;
+            this.btnAtenderSolicitud.Text = "Atender Siguiente";
+            this.btnAtenderSolicitud.UseVisualStyleBackColor = true;
+            this.btnAtenderSolicitud.Click += new System.EventHandler(this.btnAtenderSolicitud_Click);
+            // 
+            // btnRegistrarSolicitud
+            // 
+            this.btnRegistrarSolicitud.Location = new System.Drawing.Point(245, 225);
+            this.btnRegistrarSolicitud.Name = "btnRegistrarSolicitud";
+            this.btnRegistrarSolicitud.Size = new System.Drawing.Size(75, 42);
+            this.btnRegistrarSolicitud.TabIndex = 8;
+            this.btnRegistrarSolicitud.Text = "Registrar Solicitud";
+            this.btnRegistrarSolicitud.UseVisualStyleBackColor = true;
+            this.btnRegistrarSolicitud.Click += new System.EventHandler(this.btnRegistrarSolicitud_Click);
+            // 
+            // txtDetalleSolicitud
+            // 
+            this.txtDetalleSolicitud.Location = new System.Drawing.Point(82, 216);
+            this.txtDetalleSolicitud.Name = "txtDetalleSolicitud";
+            this.txtDetalleSolicitud.Size = new System.Drawing.Size(121, 20);
+            this.txtDetalleSolicitud.TabIndex = 7;
+            // 
+            // lblDetalleSolicitud
+            // 
+            this.lblDetalleSolicitud.AutoSize = true;
+            this.lblDetalleSolicitud.Location = new System.Drawing.Point(79, 200);
+            this.lblDetalleSolicitud.Name = "lblDetalleSolicitud";
+            this.lblDetalleSolicitud.Size = new System.Drawing.Size(43, 13);
+            this.lblDetalleSolicitud.TabIndex = 6;
+            this.lblDetalleSolicitud.Text = "Detalle:";
+            // 
+            // cmbTipoSolicitud
+            // 
+            this.cmbTipoSolicitud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoSolicitud.FormattingEnabled = true;
+            this.cmbTipoSolicitud.Items.AddRange(new object[] {
+            "Consulta",
+            "Reclame",
+            "Cambio o devolución"});
+            this.cmbTipoSolicitud.Location = new System.Drawing.Point(82, 171);
+            this.cmbTipoSolicitud.Name = "cmbTipoSolicitud";
+            this.cmbTipoSolicitud.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipoSolicitud.TabIndex = 5;
+            // 
+            // lblTipoSolicitud
+            // 
+            this.lblTipoSolicitud.AutoSize = true;
+            this.lblTipoSolicitud.Location = new System.Drawing.Point(79, 154);
+            this.lblTipoSolicitud.Name = "lblTipoSolicitud";
+            this.lblTipoSolicitud.Size = new System.Drawing.Size(87, 13);
+            this.lblTipoSolicitud.TabIndex = 4;
+            this.lblTipoSolicitud.Text = "Tipo de solicitud:";
+            // 
+            // txtClienteSolicitud
+            // 
+            this.txtClienteSolicitud.Location = new System.Drawing.Point(82, 125);
+            this.txtClienteSolicitud.Name = "txtClienteSolicitud";
+            this.txtClienteSolicitud.Size = new System.Drawing.Size(121, 20);
+            this.txtClienteSolicitud.TabIndex = 3;
+            // 
+            // lblClienteSolicitud
+            // 
+            this.lblClienteSolicitud.AutoSize = true;
+            this.lblClienteSolicitud.Location = new System.Drawing.Point(79, 107);
+            this.lblClienteSolicitud.Name = "lblClienteSolicitud";
+            this.lblClienteSolicitud.Size = new System.Drawing.Size(42, 13);
+            this.lblClienteSolicitud.TabIndex = 2;
+            this.lblClienteSolicitud.Text = "Cliente:";
+            // 
+            // txtCodigoSolicitud
+            // 
+            this.txtCodigoSolicitud.Location = new System.Drawing.Point(82, 80);
+            this.txtCodigoSolicitud.Name = "txtCodigoSolicitud";
+            this.txtCodigoSolicitud.Size = new System.Drawing.Size(121, 20);
+            this.txtCodigoSolicitud.TabIndex = 1;
+            // 
+            // lblCodigoSolicitud
+            // 
+            this.lblCodigoSolicitud.AutoSize = true;
+            this.lblCodigoSolicitud.Location = new System.Drawing.Point(79, 64);
+            this.lblCodigoSolicitud.Name = "lblCodigoSolicitud";
+            this.lblCodigoSolicitud.Size = new System.Drawing.Size(108, 13);
+            this.lblCodigoSolicitud.TabIndex = 0;
+            this.lblCodigoSolicitud.Text = "Código de operación:";
+            // 
             // tabReversas
             // 
             this.tabReversas.Controls.Add(this.lstReversas);
@@ -328,205 +472,13 @@
             this.tabReversas.Text = "Reversas";
             this.tabReversas.UseVisualStyleBackColor = true;
             // 
-            // contextMenuStrip1
+            // lstReversas
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
-            // 
-            // lblCodigoConsulta
-            // 
-            this.lblCodigoConsulta.AutoSize = true;
-            this.lblCodigoConsulta.Location = new System.Drawing.Point(67, 66);
-            this.lblCodigoConsulta.Name = "lblCodigoConsulta";
-            this.lblCodigoConsulta.Size = new System.Drawing.Size(108, 13);
-            this.lblCodigoConsulta.TabIndex = 0;
-            this.lblCodigoConsulta.Text = "Código de operación:";
-            // 
-            // txtCodigoConsulta
-            // 
-            this.txtCodigoConsulta.Location = new System.Drawing.Point(70, 93);
-            this.txtCodigoConsulta.Name = "txtCodigoConsulta";
-            this.txtCodigoConsulta.Size = new System.Drawing.Size(100, 20);
-            this.txtCodigoConsulta.TabIndex = 1;
-            // 
-            // btnConsultarVenta
-            // 
-            this.btnConsultarVenta.Location = new System.Drawing.Point(79, 133);
-            this.btnConsultarVenta.Name = "btnConsultarVenta";
-            this.btnConsultarVenta.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultarVenta.TabIndex = 2;
-            this.btnConsultarVenta.Text = "Consultar";
-            this.btnConsultarVenta.UseVisualStyleBackColor = true;
-            this.btnConsultarVenta.Click += new System.EventHandler(this.btnConsultarVenta_Click);
-            // 
-            // lblResultadoConsulta
-            // 
-            this.lblResultadoConsulta.AutoSize = true;
-            this.lblResultadoConsulta.Location = new System.Drawing.Point(209, 66);
-            this.lblResultadoConsulta.Name = "lblResultadoConsulta";
-            this.lblResultadoConsulta.Size = new System.Drawing.Size(0, 13);
-            this.lblResultadoConsulta.TabIndex = 3;
-            // 
-            // lblCodigoSolicitud
-            // 
-            this.lblCodigoSolicitud.AutoSize = true;
-            this.lblCodigoSolicitud.Location = new System.Drawing.Point(79, 64);
-            this.lblCodigoSolicitud.Name = "lblCodigoSolicitud";
-            this.lblCodigoSolicitud.Size = new System.Drawing.Size(108, 13);
-            this.lblCodigoSolicitud.TabIndex = 0;
-            this.lblCodigoSolicitud.Text = "Código de operación:";
-            // 
-            // txtCodigoSolicitud
-            // 
-            this.txtCodigoSolicitud.Location = new System.Drawing.Point(82, 80);
-            this.txtCodigoSolicitud.Name = "txtCodigoSolicitud";
-            this.txtCodigoSolicitud.Size = new System.Drawing.Size(121, 20);
-            this.txtCodigoSolicitud.TabIndex = 1;
-            // 
-            // lblClienteSolicitud
-            // 
-            this.lblClienteSolicitud.AutoSize = true;
-            this.lblClienteSolicitud.Location = new System.Drawing.Point(79, 107);
-            this.lblClienteSolicitud.Name = "lblClienteSolicitud";
-            this.lblClienteSolicitud.Size = new System.Drawing.Size(42, 13);
-            this.lblClienteSolicitud.TabIndex = 2;
-            this.lblClienteSolicitud.Text = "Cliente:";
-            // 
-            // txtClienteSolicitud
-            // 
-            this.txtClienteSolicitud.Location = new System.Drawing.Point(82, 125);
-            this.txtClienteSolicitud.Name = "txtClienteSolicitud";
-            this.txtClienteSolicitud.Size = new System.Drawing.Size(121, 20);
-            this.txtClienteSolicitud.TabIndex = 3;
-            // 
-            // lblTipoSolicitud
-            // 
-            this.lblTipoSolicitud.AutoSize = true;
-            this.lblTipoSolicitud.Location = new System.Drawing.Point(79, 154);
-            this.lblTipoSolicitud.Name = "lblTipoSolicitud";
-            this.lblTipoSolicitud.Size = new System.Drawing.Size(87, 13);
-            this.lblTipoSolicitud.TabIndex = 4;
-            this.lblTipoSolicitud.Text = "Tipo de solicitud:";
-            // 
-            // cmbTipoSolicitud
-            // 
-            this.cmbTipoSolicitud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoSolicitud.FormattingEnabled = true;
-            this.cmbTipoSolicitud.Items.AddRange(new object[] {
-            "Consulta",
-            "Reclame",
-            "Cambio o devolución"});
-            this.cmbTipoSolicitud.Location = new System.Drawing.Point(82, 171);
-            this.cmbTipoSolicitud.Name = "cmbTipoSolicitud";
-            this.cmbTipoSolicitud.Size = new System.Drawing.Size(121, 21);
-            this.cmbTipoSolicitud.TabIndex = 5;
-            // 
-            // lblDetalleSolicitud
-            // 
-            this.lblDetalleSolicitud.AutoSize = true;
-            this.lblDetalleSolicitud.Location = new System.Drawing.Point(79, 200);
-            this.lblDetalleSolicitud.Name = "lblDetalleSolicitud";
-            this.lblDetalleSolicitud.Size = new System.Drawing.Size(43, 13);
-            this.lblDetalleSolicitud.TabIndex = 6;
-            this.lblDetalleSolicitud.Text = "Detalle:";
-            // 
-            // txtDetalleSolicitud
-            // 
-            this.txtDetalleSolicitud.Location = new System.Drawing.Point(82, 216);
-            this.txtDetalleSolicitud.Name = "txtDetalleSolicitud";
-            this.txtDetalleSolicitud.Size = new System.Drawing.Size(121, 20);
-            this.txtDetalleSolicitud.TabIndex = 7;
-            // 
-            // btnRegistrarSolicitud
-            // 
-            this.btnRegistrarSolicitud.Location = new System.Drawing.Point(245, 225);
-            this.btnRegistrarSolicitud.Name = "btnRegistrarSolicitud";
-            this.btnRegistrarSolicitud.Size = new System.Drawing.Size(75, 42);
-            this.btnRegistrarSolicitud.TabIndex = 8;
-            this.btnRegistrarSolicitud.Text = "Registrar Solicitud";
-            this.btnRegistrarSolicitud.UseVisualStyleBackColor = true;
-            this.btnRegistrarSolicitud.Click += new System.EventHandler(this.btnRegistrarSolicitud_Click);
-            // 
-            // btnAtenderSolicitud
-            // 
-            this.btnAtenderSolicitud.Location = new System.Drawing.Point(326, 225);
-            this.btnAtenderSolicitud.Name = "btnAtenderSolicitud";
-            this.btnAtenderSolicitud.Size = new System.Drawing.Size(75, 42);
-            this.btnAtenderSolicitud.TabIndex = 9;
-            this.btnAtenderSolicitud.Text = "Atender Siguiente";
-            this.btnAtenderSolicitud.UseVisualStyleBackColor = true;
-            this.btnAtenderSolicitud.Click += new System.EventHandler(this.btnAtenderSolicitud_Click);
-            // 
-            // lstSolicitudes
-            // 
-            this.lstSolicitudes.FormattingEnabled = true;
-            this.lstSolicitudes.Location = new System.Drawing.Point(245, 57);
-            this.lstSolicitudes.Name = "lstSolicitudes";
-            this.lstSolicitudes.Size = new System.Drawing.Size(396, 147);
-            this.lstSolicitudes.TabIndex = 10;
-            // 
-            // lblCodigoReversa
-            // 
-            this.lblCodigoReversa.AutoSize = true;
-            this.lblCodigoReversa.Location = new System.Drawing.Point(67, 60);
-            this.lblCodigoReversa.Name = "lblCodigoReversa";
-            this.lblCodigoReversa.Size = new System.Drawing.Size(108, 13);
-            this.lblCodigoReversa.TabIndex = 0;
-            this.lblCodigoReversa.Text = "Código de operación:";
-            // 
-            // txtCodigoReversa
-            // 
-            this.txtCodigoReversa.Location = new System.Drawing.Point(70, 76);
-            this.txtCodigoReversa.Name = "txtCodigoReversa";
-            this.txtCodigoReversa.Size = new System.Drawing.Size(150, 20);
-            this.txtCodigoReversa.TabIndex = 1;
-            // 
-            // lblMotivoReversa
-            // 
-            this.lblMotivoReversa.AutoSize = true;
-            this.lblMotivoReversa.Location = new System.Drawing.Point(67, 113);
-            this.lblMotivoReversa.Name = "lblMotivoReversa";
-            this.lblMotivoReversa.Size = new System.Drawing.Size(106, 13);
-            this.lblMotivoReversa.TabIndex = 2;
-            this.lblMotivoReversa.Text = "Motivo de la reversa:";
-            // 
-            // lblSupervisor
-            // 
-            this.lblSupervisor.AutoSize = true;
-            this.lblSupervisor.Location = new System.Drawing.Point(67, 162);
-            this.lblSupervisor.Name = "lblSupervisor";
-            this.lblSupervisor.Size = new System.Drawing.Size(112, 13);
-            this.lblSupervisor.TabIndex = 3;
-            this.lblSupervisor.Text = "Supervisor autorizado:";
-            // 
-            // txtMotivoReversa
-            // 
-            this.txtMotivoReversa.Location = new System.Drawing.Point(70, 129);
-            this.txtMotivoReversa.Name = "txtMotivoReversa";
-            this.txtMotivoReversa.Size = new System.Drawing.Size(150, 20);
-            this.txtMotivoReversa.TabIndex = 4;
-            // 
-            // txtSupervisor
-            // 
-            this.txtSupervisor.Location = new System.Drawing.Point(70, 178);
-            this.txtSupervisor.Name = "txtSupervisor";
-            this.txtSupervisor.Size = new System.Drawing.Size(150, 20);
-            this.txtSupervisor.TabIndex = 5;
-            // 
-            // btnAutorizarReversa
-            // 
-            this.btnAutorizarReversa.Location = new System.Drawing.Point(257, 210);
-            this.btnAutorizarReversa.Name = "btnAutorizarReversa";
-            this.btnAutorizarReversa.Size = new System.Drawing.Size(75, 36);
-            this.btnAutorizarReversa.TabIndex = 6;
-            this.btnAutorizarReversa.Text = "Autorizar Reversa";
-            this.btnAutorizarReversa.UseVisualStyleBackColor = true;
-            this.btnAutorizarReversa.Click += new System.EventHandler(this.btnAutorizarReversa_Click);
+            this.lstReversas.FormattingEnabled = true;
+            this.lstReversas.Location = new System.Drawing.Point(257, 76);
+            this.lstReversas.Name = "lstReversas";
+            this.lstReversas.Size = new System.Drawing.Size(385, 108);
+            this.lstReversas.TabIndex = 8;
             // 
             // btnVerHistorialReversas
             // 
@@ -538,13 +490,73 @@
             this.btnVerHistorialReversas.UseVisualStyleBackColor = true;
             this.btnVerHistorialReversas.Click += new System.EventHandler(this.btnVerHistorialReversas_Click);
             // 
-            // lstReversas
+            // btnAutorizarReversa
             // 
-            this.lstReversas.FormattingEnabled = true;
-            this.lstReversas.Location = new System.Drawing.Point(257, 76);
-            this.lstReversas.Name = "lstReversas";
-            this.lstReversas.Size = new System.Drawing.Size(385, 108);
-            this.lstReversas.TabIndex = 8;
+            this.btnAutorizarReversa.Location = new System.Drawing.Point(257, 210);
+            this.btnAutorizarReversa.Name = "btnAutorizarReversa";
+            this.btnAutorizarReversa.Size = new System.Drawing.Size(75, 36);
+            this.btnAutorizarReversa.TabIndex = 6;
+            this.btnAutorizarReversa.Text = "Autorizar Reversa";
+            this.btnAutorizarReversa.UseVisualStyleBackColor = true;
+            this.btnAutorizarReversa.Click += new System.EventHandler(this.btnAutorizarReversa_Click);
+            // 
+            // txtSupervisor
+            // 
+            this.txtSupervisor.Location = new System.Drawing.Point(70, 178);
+            this.txtSupervisor.Name = "txtSupervisor";
+            this.txtSupervisor.Size = new System.Drawing.Size(150, 20);
+            this.txtSupervisor.TabIndex = 5;
+            // 
+            // txtMotivoReversa
+            // 
+            this.txtMotivoReversa.Location = new System.Drawing.Point(70, 129);
+            this.txtMotivoReversa.Name = "txtMotivoReversa";
+            this.txtMotivoReversa.Size = new System.Drawing.Size(150, 20);
+            this.txtMotivoReversa.TabIndex = 4;
+            // 
+            // lblSupervisor
+            // 
+            this.lblSupervisor.AutoSize = true;
+            this.lblSupervisor.Location = new System.Drawing.Point(67, 162);
+            this.lblSupervisor.Name = "lblSupervisor";
+            this.lblSupervisor.Size = new System.Drawing.Size(112, 13);
+            this.lblSupervisor.TabIndex = 3;
+            this.lblSupervisor.Text = "Supervisor autorizado:";
+            // 
+            // lblMotivoReversa
+            // 
+            this.lblMotivoReversa.AutoSize = true;
+            this.lblMotivoReversa.Location = new System.Drawing.Point(67, 113);
+            this.lblMotivoReversa.Name = "lblMotivoReversa";
+            this.lblMotivoReversa.Size = new System.Drawing.Size(106, 13);
+            this.lblMotivoReversa.TabIndex = 2;
+            this.lblMotivoReversa.Text = "Motivo de la reversa:";
+            // 
+            // txtCodigoReversa
+            // 
+            this.txtCodigoReversa.Location = new System.Drawing.Point(70, 76);
+            this.txtCodigoReversa.Name = "txtCodigoReversa";
+            this.txtCodigoReversa.Size = new System.Drawing.Size(150, 20);
+            this.txtCodigoReversa.TabIndex = 1;
+            // 
+            // lblCodigoReversa
+            // 
+            this.lblCodigoReversa.AutoSize = true;
+            this.lblCodigoReversa.Location = new System.Drawing.Point(67, 60);
+            this.lblCodigoReversa.Name = "lblCodigoReversa";
+            this.lblCodigoReversa.Size = new System.Drawing.Size(108, 13);
+            this.lblCodigoReversa.TabIndex = 0;
+            this.lblCodigoReversa.Text = "Código de operación:";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
             // Form1
             // 
@@ -555,7 +567,6 @@
             this.Name = "Form1";
             this.RightToLeftLayout = true;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPrincipal.ResumeLayout(false);
             this.tabVentas.ResumeLayout(false);
             this.tabVentas.PerformLayout();
@@ -620,6 +631,7 @@
         private System.Windows.Forms.TextBox txtSupervisor;
         private System.Windows.Forms.TextBox txtMotivoReversa;
         private System.Windows.Forms.Label lblSupervisor;
+        private System.Windows.Forms.Button btnRegistrarReporte;
     }
 }
 
