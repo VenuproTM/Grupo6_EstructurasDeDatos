@@ -50,10 +50,7 @@
     <Compile Include="ComercialAndina\Estructuras\ColaSolicitudes.cs" />
     <Compile Include="ComercialAndina\Estructuras\ListaEnlazadaVentas.cs" />
     <Compile Include="ComercialAndina\Estructuras\PilaReversas.cs" />
-    <Compile Include="ComercialAndina\Forms\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComercialAndina\Models\Reserva.cs" />
+    <Compile Include="ComercialAndina\Models\Reversa.cs" />
     <Compile Include="ComercialAndina\Models\Solicitud.cs" />
     <Compile Include="ComercialAndina\Models\Venta.cs" />
     <Compile Include="ComercialAndina\Servicios\GestorComercial.cs" />

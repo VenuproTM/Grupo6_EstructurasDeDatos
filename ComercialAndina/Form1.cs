@@ -51,7 +51,6 @@ namespace ComercialAndina
             try
             {
                 var venta = gestor.RegistrarVenta(
-                    txtCodigoVenta.Text,
                     txtClienteVenta.Text,
                     txtProductos.Text,
                     (int)nudCantidad.Value,
