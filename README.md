@@ -1,1 +1,1 @@
-# Grupo6_EstructurasDeDatos_EF
+# Grupo6_EstructurasDeDatos
